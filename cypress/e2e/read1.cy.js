@@ -1,14 +1,22 @@
 /// <reference types="cypress"/>
 
 describe('Reading via fixture()', () => {
-  it('File available in the fixtures folder', () => {
- 
-    cy.fixture('example')// note i didnt put the .json to the file name since the file is inside the fixtures folder
-    .then((data)=>{
-      cy.log(data.name)
-      cy.log(data.email)
-      cy.log(data.body)
-    })
+
+let mydata;
+
+before(()=>{
+  cy.fixture('example')// note i didnt put the .json to the file name since the file is inside the fixtures folder
+  .then((data)=>{
+    mydata =data
+  
+  })
+})
+
+it('File available in the fixtures folder', () => {
+    cy.log(mydata.name)
+    cy.log(mydata.email)
+    cy.log(mydata.body)
+    
 })
 
 it('file outside the fixtures folder', () => {
